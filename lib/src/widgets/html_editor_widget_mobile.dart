@@ -9,8 +9,8 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
 import 'package:html_editor_enhanced/src/widgets/toolbar_widget.dart';
-import 'package:html_editor_enhanced/utils/utils.dart';
 import 'package:html_editor_enhanced/utils/plugins.dart';
+import 'package:html_editor_enhanced/utils/utils.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 /// The HTML Editor widget itself, for mobile (uses InAppWebView)
@@ -106,16 +106,29 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
         },
         child: Container(
           height: docHeight + 10,
-          decoration: widget.otherOptions.decoration,
+          decoration: BoxDecoration(
+              border: Border.fromBorderSide(
+                  BorderSide(color: Color(0xffececec), width: 1)),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(15.0)),
           child: Column(
             children: [
               widget.htmlToolbarOptions.toolbarPosition ==
                       ToolbarPosition.aboveEditor
-                  ? ToolbarWidget(
-                      key: toolbarKey,
-                      controller: widget.controller,
-                      htmlToolbarOptions: widget.htmlToolbarOptions,
-                      callbacks: widget.callbacks)
+                  ? Container(
+                      decoration: BoxDecoration(
+                        color: Color(0xffececec),
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(15.0),
+                          topRight: Radius.circular(15.0),
+                        ),
+                      ),
+                      child: ToolbarWidget(
+                          key: toolbarKey,
+                          controller: widget.controller,
+                          htmlToolbarOptions: widget.htmlToolbarOptions,
+                          callbacks: widget.callbacks),
+                    )
                   : Container(height: 0, width: 0),
               Expanded(
                 child: InAppWebView(
@@ -455,14 +468,12 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
                   },
                 ),
               ),
-              widget.htmlToolbarOptions.toolbarPosition ==
-                      ToolbarPosition.belowEditor
-                  ? ToolbarWidget(
-                      key: toolbarKey,
-                      controller: widget.controller,
-                      htmlToolbarOptions: widget.htmlToolbarOptions,
-                      callbacks: widget.callbacks)
-                  : Container(height: 0, width: 0),
+              /* Container(
+                height: 10,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15.0)),
+              )*/
             ],
           ),
         ),
