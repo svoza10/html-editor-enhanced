@@ -104,7 +104,7 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
           if (!visibleStream.isClosed) visibleStream.add(info.visibleFraction);
         },
         child: Container(
-          height: docHeight + 10,
+          height: docHeight + 15,
           decoration: BoxDecoration(
             border: Border.fromBorderSide(
                 BorderSide(color: Color(0xFFD9DDE7), width: 1)),
