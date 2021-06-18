@@ -939,6 +939,30 @@ a.note-dropdown-item,a.note-dropdown-item:hover {
   padding: 10px;
   overflow: auto;
   word-wrap: break-word;
+  margin: 0 0 0px;
+}
+
+.note-editable *{
+    font-size: .875rem;
+    line-height: 1.5;
+    background: transparent !important;
+    text-align: inherit !important;
+    font-size: @baseFontSize !important;
+    font-family: 'Open Sans', sans-serif !important;
+    margin: 0;
+}
+
+.note-editable ul{
+ margin: 0;
+ padding 0px;
+ padding-inline-start: 10px;
+}
+
+.note-editable ol{
+ list-style-type: decimal;
+ margin: 0;
+ padding 0px;
+ padding-inline-start: 13px;
 }
 
 .note-editor.note-airframe .note-editing-area .note-editable[contenteditable=false],.note-editor.note-frame .note-editing-area .note-editable[contenteditable=false] {
