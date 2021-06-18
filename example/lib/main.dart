@@ -108,7 +108,7 @@ class _HtmlEditorExampleState extends State<HtmlEditorExample> {
                     ],
                   ),
                   otherOptions: OtherOptions(
-                      height: 100,
+                      height: 200,
                       decoration: BoxDecoration(
                           color: Colors.red,
                           borderRadius: BorderRadius.circular(15.0))),
