@@ -13,7 +13,32 @@ class HtmlEditorExampleApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(),
       darkTheme: ThemeData.dark(),
-      home: HtmlEditorExample(title: 'Flutter HTML Editor Example'),
+      home: FirstRoute(),
+    );
+  }
+}
+
+class FirstRoute extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('First Route'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          child: Text('Open route'),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => HtmlEditorExample(
+                        title: 'Flutter HTML Editor Example',
+                      )),
+            );
+          },
+        ),
+      ),
     );
   }
 }
@@ -47,11 +72,7 @@ class _HtmlEditorExampleState extends State<HtmlEditorExample> {
             IconButton(
                 icon: Icon(Icons.refresh),
                 onPressed: () {
-                  if (kIsWeb) {
-                    controller.reloadWeb();
-                  } else {
-                    controller.editorController!.reload();
-                  }
+                  Navigator.pop(context);
                 })
           ],
         ),
@@ -71,8 +92,9 @@ class _HtmlEditorExampleState extends State<HtmlEditorExample> {
                 child: HtmlEditor(
                   controller: controller,
                   htmlEditorOptions: HtmlEditorOptions(
+                    adjustHeightForKeyboard: false,
                     hint: 'enther text ..',
-                    initialText: 'hey',
+                    initialText: '',
                     shouldEnsureVisible: true,
                   ),
                   htmlToolbarOptions: HtmlToolbarOptions(

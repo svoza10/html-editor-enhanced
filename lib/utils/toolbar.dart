@@ -49,10 +49,27 @@ class FontButtons extends Toolbar {
 
   List<Icon> getIcons1() {
     var icons = <Icon>[];
-    if (bold) icons.add(Icon(Icons.format_bold));
-    if (italic) icons.add(Icon(Icons.format_italic));
-    if (underline) icons.add(Icon(Icons.format_underline));
-    if (clearAll) icons.add(Icon(Icons.format_clear));
+    if (bold) {
+      icons.add(Icon(
+        Icons.format_bold,
+        color: Colors.black,
+      ));
+    }
+    if (italic)
+      icons.add(Icon(
+        Icons.format_italic,
+        color: Colors.black,
+      ));
+    if (underline)
+      icons.add(Icon(
+        Icons.format_underline,
+        color: Colors.black,
+      ));
+    if (clearAll)
+      icons.add(Icon(
+        Icons.format_clear,
+        color: Colors.black,
+      ));
     return icons;
   }
 
@@ -97,8 +114,16 @@ class ListButtons extends Toolbar {
 
   List<Icon> getIcons() {
     var icons = <Icon>[];
-    if (ul) icons.add(Icon(Icons.format_list_bulleted));
-    if (ol) icons.add(Icon(Icons.format_list_numbered));
+    if (ul)
+      icons.add(Icon(
+        Icons.format_list_bulleted,
+        color: Colors.black,
+      ));
+    if (ol)
+      icons.add(Icon(
+        Icons.format_list_numbered,
+        color: Colors.black,
+      ));
     return icons;
   }
 }
@@ -138,8 +163,16 @@ class ParagraphButtons extends Toolbar {
 
   List<Icon> getIcons2() {
     var icons = <Icon>[];
-    if (increaseIndent) icons.add(Icon(Icons.format_indent_increase));
-    if (decreaseIndent) icons.add(Icon(Icons.format_indent_decrease));
+    if (increaseIndent)
+      icons.add(Icon(
+        Icons.format_indent_increase,
+        color: Colors.black,
+      ));
+    if (decreaseIndent)
+      icons.add(Icon(
+        Icons.format_indent_decrease,
+        color: Colors.black,
+      ));
     return icons;
   }
 }
@@ -201,8 +234,16 @@ class OtherButtons extends Toolbar {
     var icons = <Icon>[];
     if (fullscreen) icons.add(Icon(Icons.fullscreen));
     if (codeview) icons.add(Icon(Icons.code));
-    if (undo) icons.add(Icon(Icons.undo));
-    if (redo) icons.add(Icon(Icons.redo));
+    if (undo)
+      icons.add(Icon(
+        Icons.undo,
+        color: Colors.black,
+      ));
+    if (redo)
+      icons.add(Icon(
+        Icons.redo,
+        color: Colors.black,
+      ));
     if (help) icons.add(Icon(Icons.help_outline));
     return icons;
   }

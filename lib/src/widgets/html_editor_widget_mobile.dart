@@ -104,7 +104,7 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
           if (!visibleStream.isClosed) visibleStream.add(info.visibleFraction);
         },
         child: Container(
-          height: docHeight + 15,
+          height: docHeight + 10,
           decoration: BoxDecoration(
             border: Border.fromBorderSide(
                 BorderSide(color: Color(0xFFD9DDE7), width: 1)),
@@ -122,7 +122,7 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
                       ToolbarPosition.aboveEditor
                   ? Container(
                       decoration: BoxDecoration(
-                        color: Color(0xFFD9DDE7),
+                        color: Colors.white,
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(15.0),
                           topRight: Radius.circular(15.0),
