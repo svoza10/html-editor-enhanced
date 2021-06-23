@@ -91,6 +91,7 @@ class _HtmlEditorExampleState extends State<HtmlEditorExample> {
                 padding: const EdgeInsets.all(16.0),
                 child: HtmlEditor(
                   controller: controller,
+                  colorsOptions: ColorsOptions(borderColor: Colors.red),
                   htmlEditorOptions: HtmlEditorOptions(
                     adjustHeightForKeyboard: false,
                     hint: 'enther text ..',

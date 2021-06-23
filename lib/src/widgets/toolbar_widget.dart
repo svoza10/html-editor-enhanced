@@ -491,7 +491,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
             child: CustomDropdownButton<String>(
               elevation: widget.htmlToolbarOptions.dropdownElevation,
               icon: widget.htmlToolbarOptions.dropdownIcon,
-              iconEnabledColor: widget.htmlToolbarOptions.dropdownIconColor,
+              iconEnabledColor: Colors.black,
               iconSize: widget.htmlToolbarOptions.dropdownIconSize,
               itemHeight: widget.htmlToolbarOptions.dropdownItemHeight,
               focusColor: widget.htmlToolbarOptions.dropdownFocusColor,
@@ -623,7 +623,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
               child: CustomDropdownButton<String>(
                 elevation: widget.htmlToolbarOptions.dropdownElevation,
                 icon: widget.htmlToolbarOptions.dropdownIcon,
-                iconEnabledColor: widget.htmlToolbarOptions.dropdownIconColor,
+                iconEnabledColor: Colors.black,
                 iconSize: widget.htmlToolbarOptions.dropdownIconSize,
                 itemHeight: widget.htmlToolbarOptions.dropdownItemHeight,
                 focusColor: widget.htmlToolbarOptions.dropdownFocusColor,
@@ -705,7 +705,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
               child: CustomDropdownButton<double>(
                 elevation: widget.htmlToolbarOptions.dropdownElevation,
                 icon: widget.htmlToolbarOptions.dropdownIcon,
-                iconEnabledColor: widget.htmlToolbarOptions.dropdownIconColor,
+                iconEnabledColor: Colors.black,
                 iconSize: widget.htmlToolbarOptions.dropdownIconSize,
                 itemHeight: widget.htmlToolbarOptions.dropdownItemHeight,
                 focusColor: widget.htmlToolbarOptions.dropdownFocusColor,
@@ -835,7 +835,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
               child: CustomDropdownButton<String>(
                 elevation: widget.htmlToolbarOptions.dropdownElevation,
                 icon: widget.htmlToolbarOptions.dropdownIcon,
-                iconEnabledColor: widget.htmlToolbarOptions.dropdownIconColor,
+                iconEnabledColor: Colors.black,
                 iconSize: widget.htmlToolbarOptions.dropdownIconSize,
                 itemHeight: widget.htmlToolbarOptions.dropdownItemHeight,
                 focusColor: widget.htmlToolbarOptions.dropdownFocusColor,
@@ -1266,7 +1266,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
               child: CustomDropdownButton<String>(
                 elevation: widget.htmlToolbarOptions.dropdownElevation,
                 icon: widget.htmlToolbarOptions.dropdownIcon,
-                iconEnabledColor: widget.htmlToolbarOptions.dropdownIconColor,
+                iconEnabledColor: Colors.black,
                 iconSize: widget.htmlToolbarOptions.dropdownIconSize,
                 itemHeight: widget.htmlToolbarOptions.dropdownItemHeight,
                 focusColor: widget.htmlToolbarOptions.dropdownFocusColor,
@@ -1488,7 +1488,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
               child: CustomDropdownButton<double>(
                 elevation: widget.htmlToolbarOptions.dropdownElevation,
                 icon: widget.htmlToolbarOptions.dropdownIcon,
-                iconEnabledColor: widget.htmlToolbarOptions.dropdownIconColor,
+                iconEnabledColor: Colors.black,
                 iconSize: widget.htmlToolbarOptions.dropdownIconSize,
                 itemHeight: widget.htmlToolbarOptions.dropdownItemHeight,
                 focusColor: widget.htmlToolbarOptions.dropdownFocusColor,
@@ -1644,7 +1644,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
               child: CustomDropdownButton<String>(
                 elevation: widget.htmlToolbarOptions.dropdownElevation,
                 icon: widget.htmlToolbarOptions.dropdownIcon,
-                iconEnabledColor: widget.htmlToolbarOptions.dropdownIconColor,
+                iconEnabledColor: Colors.black,
                 iconSize: widget.htmlToolbarOptions.dropdownIconSize,
                 itemHeight: widget.htmlToolbarOptions.dropdownItemHeight,
                 focusColor: widget.htmlToolbarOptions.dropdownFocusColor,

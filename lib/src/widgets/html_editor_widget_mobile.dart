@@ -22,6 +22,7 @@ class HtmlEditorWidget extends StatefulWidget {
     required this.htmlEditorOptions,
     required this.htmlToolbarOptions,
     required this.otherOptions,
+    required this.colorsOptions,
   }) : super(key: key);
 
   final HtmlEditorController controller;
@@ -30,6 +31,7 @@ class HtmlEditorWidget extends StatefulWidget {
   final HtmlEditorOptions htmlEditorOptions;
   final HtmlToolbarOptions htmlToolbarOptions;
   final OtherOptions otherOptions;
+  final ColorsOptions colorsOptions;
 
   @override
   _HtmlEditorWidgetMobileState createState() => _HtmlEditorWidgetMobileState();
@@ -107,7 +109,7 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
           height: docHeight + 10,
           decoration: BoxDecoration(
             border: Border.fromBorderSide(
-                BorderSide(color: Color(0xFFD9DDE7), width: 1)),
+                BorderSide(color: widget.colorsOptions.borderColor, width: 1)),
             color: Colors.white,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(16.0),
@@ -122,7 +124,7 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
                       ToolbarPosition.aboveEditor
                   ? Container(
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: widget.colorsOptions.toolbarColor,
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(15.0),
                           topRight: Radius.circular(15.0),

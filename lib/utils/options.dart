@@ -398,3 +398,14 @@ class OtherOptions {
   /// The default value is 400.
   final double height;
 }
+
+class ColorsOptions {
+  final Color toolbarColor;
+  final Color borderColor;
+  final Color iconColor;
+
+  const ColorsOptions(
+      {this.toolbarColor = const Color(0xFFD9DDE7),
+      this.borderColor = const Color(0xFFD9DDE7),
+      this.iconColor = Colors.black});
+}
