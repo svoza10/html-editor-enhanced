@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:collection';
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
@@ -9,6 +10,9 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
 import 'package:html_editor_enhanced/utils/plugins.dart';
+import 'package:html_editor_enhanced/utils/utils.dart';
+import 'package:html_editor_enhanced/html_editor.dart'
+    hide NavigationActionPolicy, UserScript, ContextMenu;
 import 'package:html_editor_enhanced/utils/utils.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -61,6 +65,10 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
   /// the editor when the keyboard is visible.
   GlobalKey toolbarKey = GlobalKey();
 
+  /// Variable to cache the viewable size of the editor to update it in case
+  /// the editor is focused much after its visibility changes
+  double? cachedVisibleDecimal;
+
   @override
   void initState() {
     docHeight = widget.otherOptions.height;
@@ -103,7 +111,14 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
       child: VisibilityDetector(
         key: Key(key),
         onVisibilityChanged: (VisibilityInfo info) async {
-          if (!visibleStream.isClosed) visibleStream.add(info.visibleFraction);
+          if (!visibleStream.isClosed) {
+            cachedVisibleDecimal = info.visibleFraction == 1
+                ? (info.size.height / widget.otherOptions.height).clamp(0, 1)
+                : info.visibleFraction;
+            visibleStream.add(info.visibleFraction == 1
+                ? (info.size.height / widget.otherOptions.height).clamp(0, 1)
+                : info.visibleFraction);
+          }
         },
         child: Container(
           height: docHeight + 10,
@@ -156,14 +171,17 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
                       crossPlatform: InAppWebViewOptions(
                         javaScriptEnabled: true,
                         transparentBackground: true,
+                        useShouldOverrideUrlLoading: true,
                       ),
                       android: AndroidInAppWebViewOptions(
                         useHybridComposition: true,
                         loadWithOverviewMode: true,
                       )),
                   initialUserScripts:
-                      widget.htmlEditorOptions.mobileInitialScripts,
-                  contextMenu: widget.htmlEditorOptions.mobileContextMenu,
+                      widget.htmlEditorOptions.mobileInitialScripts
+                          as UnmodifiableListView<UserScript>?,
+                  contextMenu: widget.htmlEditorOptions.mobileContextMenu
+                      as ContextMenu?,
                   gestureRecognizers: {
                     Factory<VerticalDragGestureRecognizer>(
                         () => VerticalDragGestureRecognizer()),
@@ -171,6 +189,15 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
                         LongPressGestureRecognizer(
                             duration: widget
                                 .htmlEditorOptions.mobileLongPressDuration)),
+                  },
+                  shouldOverrideUrlLoading: (controller, action) async {
+                    if (!action.request.url.toString().contains(filePath)) {
+                      return (await widget.callbacks?.onNavigationRequestMobile
+                                  ?.call(action.request.url.toString()))
+                              as NavigationActionPolicy? ??
+                          NavigationActionPolicy.ALLOW;
+                    }
+                    return NavigationActionPolicy.ALLOW;
                   },
                   onConsoleMessage: (controller, message) {
                     print(message.message);
@@ -183,7 +210,36 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
                           );
                     }
                     if (widget.htmlEditorOptions.adjustHeightForKeyboard &&
-                        mounted) {
+                        mounted &&
+                        !visibleStream.isClosed) {
+                      Future<void> setHeightJS() async {
+                        await controller.evaluateJavascript(source: """
+                                \$('div.note-editable').outerHeight(${max(docHeight - (toolbarKey.currentContext?.size?.height ?? 0), 30)});
+                                // from https://stackoverflow.com/a/67152280
+                                var selection = window.getSelection();
+                                if (selection.rangeCount) {
+                                  var firstRange = selection.getRangeAt(0);
+                                  if (firstRange.commonAncestorContainer !== document) {
+                                    var tempAnchorEl = document.createElement('br');
+                                    firstRange.insertNode(tempAnchorEl);
+                                    tempAnchorEl.scrollIntoView({
+                                      block: 'end',
+                                    });
+                                    tempAnchorEl.remove();
+                                  }
+                                }
+                              """);
+                      }
+
+                      /// this is a workaround so jumping between focus on different
+                      /// editable elements still resizes the editor
+                      if ((cachedVisibleDecimal ?? 0) > 0.1) {
+                        this.setState(() {
+                          docHeight = widget.otherOptions.height *
+                              cachedVisibleDecimal!;
+                        });
+                        await setHeightJS();
+                      }
                       var visibleDecimal = await visibleStream.stream.first;
                       var newHeight = widget.otherOptions.height;
                       if (visibleDecimal > 0.1) {
@@ -191,9 +247,7 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
                           docHeight = newHeight * visibleDecimal;
                         });
                         //todo add support for traditional summernote controls again?
-                        await controller.evaluateJavascript(
-                            source:
-                                "\$('div.note-editable').outerHeight(${max(docHeight - (toolbarKey.currentContext?.size?.height ?? 0), 30)});");
+                        await setHeightJS();
                       }
                     }
                   },
@@ -203,7 +257,31 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
                     var maximumFileSize = 10485760;
                     if (url.contains(filePath)) {
                       var summernoteToolbar = '[\n';
-                      var summernoteCallbacks = 'callbacks: {';
+                      var summernoteCallbacks = '''callbacks: {
+                          onKeydown: function(e) {
+                              var chars = \$(".note-editable").text();
+                              var totalChars = chars.length;
+                              ${widget.htmlEditorOptions.characterLimit != null ? '''allowedKeys = (
+                                  e.which === 8 ||  /* BACKSPACE */
+                                  e.which === 35 || /* END */
+                                  e.which === 36 || /* HOME */
+                                  e.which === 37 || /* LEFT */
+                                  e.which === 38 || /* UP */
+                                  e.which === 39 || /* RIGHT*/
+                                  e.which === 40 || /* DOWN */
+                                  e.which === 46 || /* DEL*/
+                                  e.ctrlKey === true && e.which === 65 || /* CTRL + A */
+                                  e.ctrlKey === true && e.which === 88 || /* CTRL + X */
+                                  e.ctrlKey === true && e.which === 67 || /* CTRL + C */
+                                  e.ctrlKey === true && e.which === 86 || /* CTRL + V */
+                                  e.ctrlKey === true && e.which === 90    /* CTRL + Z */
+                              );
+                              if (!allowedKeys && \$(e.target).text().length >= ${widget.htmlEditorOptions.characterLimit}) {
+                                  e.preventDefault();
+                              }''' : ''}
+                              window.flutter_inappwebview.callHandler('totalChars', totalChars);
+                          },
+                      ''';
                       if (widget.plugins.isNotEmpty) {
                         summernoteToolbar = summernoteToolbar + "['plugins', [";
                         for (var p in widget.plugins) {
@@ -320,8 +398,9 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
                               height: ${widget.otherOptions.height - (toolbarKey.currentContext?.size?.height ?? 0)},
                               toolbar: $summernoteToolbar
                               disableGrammar: false,
-                              spellCheck: false,
+                              spellCheck: ${widget.htmlEditorOptions.spellCheck},
                               maximumFileSize: $maximumFileSize,
+                              ${widget.htmlEditorOptions.customOptions}
                               $summernoteCallbacks
                           });
                           
@@ -443,6 +522,16 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
                             resetHeight();
                           }
                         });
+                      }
+                      widget.controller.editorController!.addJavaScriptHandler(
+                          handlerName: 'totalChars',
+                          callback: (keyCode) {
+                            widget.controller.characterCount =
+                                keyCode.first as int;
+                          });
+                      //disable editor if necessary
+                      if (widget.htmlEditorOptions.disabled && !callbacksInitialized) {
+                        widget.controller.disable();
                       }
                       //initialize callbacks
                       if (widget.callbacks != null && !callbacksInitialized) {

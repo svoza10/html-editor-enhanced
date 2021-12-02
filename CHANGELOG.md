@@ -1,3 +1,38 @@
+## [2.4.0] - 2021-10-30
+* Improved color picker
+   * Added scrollable support to picker
+   * Fixed issue where keyboard would disappear and prevent users from selecting a new color
+* Added support for getting selected text in Flutter Web (`controller.getSelectedTextWeb()`)
+* Added support for spellcheck
+* Added support for custom options in summernote initialization
+* Added support for a hard stop on character limit (will not allow user to type further)
+* Fixed bug where focusing editor would scroll it back to the top and not show the caret position
+* Fixed height not updating in Flutter Web when `callbacks` was `null`
+* Updated dependencies and fixed flutter_colorpicker dependency error (@eliudio)
+
+## [2.3.0] - 2021-09-09
+* Potentially fixed bad state error for `stream.first`
+* Fixed Summernote-@-Mention not inserting text after selecting the dropdown item
+* Fixed whitespace after @ sign when inserting a mention
+* Add support for overriding URL loading on mobile with `onNavigationRequestMobile` callback
+* Hide keyboard when opening color picker dialog
+* Use try/catch on `SystemChannel` call on web to prevent exception
+* Added a character counter for text in the editor - access via `controller.characterCount`
+* Fixed auto adjust height not working in some cases
+* Fixed editor height not updating when focused after a TextField was previously focused
+* Updated dependencies (@JEuler)
+
+NOTE: If you are on Flutter Beta+, you must use `dependency_overrides` in `pubspec.yaml`!!
+
+```yaml
+dependency_overrides:
+    flutter_colorpicker: ^0.5.0
+```
+
+## [2.2.0+1] - 2021-06-15 (BETA)
+* Updated `flutter_colorpicker` to the latest version to fix deprecations on Flutter beta+
+* [NOTE] Do not use this version on Flutter stable!
+
 ## [2.2.0] - 2021-06-14
 * Fixed null safety warnings due to latest `file_picker` version
 * Potentially fixed editor controller creating a new instance on widget rebuild

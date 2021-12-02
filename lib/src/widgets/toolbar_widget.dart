@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:flex_color_picker/flex_color_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
 import 'package:html_editor_enhanced/utils/utils.dart';
 import 'package:numberpicker/numberpicker.dart';
@@ -1043,9 +1043,15 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
           renderBorder: widget.htmlToolbarOptions.renderBorder,
           textStyle: widget.htmlToolbarOptions.textStyle,
           onPressed: (int index) async {
-            void updateStatus() {
+            void updateStatus(Color? color) {
               setState(mounted, this.setState, () {
                 _colorSelected[index] = !_colorSelected[index];
+                if (color != null && t.getIcons()[index].icon == Icons.format_color_text) {
+                  _foreColorSelected = color;
+                }
+                if (color != null && t.getIcons()[index].icon == Icons.format_color_fill) {
+                  _backColorSelected = color;
+                }
               });
             }
 
@@ -1061,7 +1067,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                           .toRadixString(16)
                           .padLeft(6, '0')
                           .toUpperCase());
-                  updateStatus();
+                  updateStatus(null);
                 }
               }
               if (t.getIcons()[index].icon == Icons.format_color_fill) {
@@ -1075,7 +1081,7 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                           .toRadixString(16)
                           .padLeft(6, '0')
                           .toUpperCase());
-                  updateStatus();
+                  updateStatus(null);
                 }
               }
             } else {
@@ -1094,28 +1100,43 @@ class ToolbarWidgetState extends State<ToolbarWidget> {
                     true;
               }
               if (proceed) {
+                late Color newColor;
+                if (t.getIcons()[index].icon == Icons.format_color_text) {
+                  newColor = _foreColorSelected;
+                } else {
+                  newColor = _backColorSelected;
+                }
                 await showDialog(
                     context: context,
                     builder: (BuildContext context) {
-                      late Color newColor;
-                      if (t.getIcons()[index].icon == Icons.format_color_text) {
-                        newColor = _foreColorSelected;
-                      } else {
-                        newColor = _backColorSelected;
-                      }
                       return PointerInterceptor(
                         child: AlertDialog(
-                          title: Text(
-                              'Pick ${t.getIcons()[index].icon == Icons.format_color_text ? "text" : "highlight"} color'),
-                          content: SingleChildScrollView(
-                            child: ColorPicker(
-                              pickerColor: newColor,
-                              paletteType: PaletteType.hsv,
-                              enableAlpha: false,
-                              displayThumbColor: true,
-                              onColorChanged: (Color changed) {
-                                newColor = changed;
-                              },
+                          scrollable: true,
+                          content: ColorPicker(
+                            color: newColor,
+                            onColorChanged: (color) {
+                              newColor = color;
+                            },
+                            title: Text('Choose a Color',
+                                style: Theme.of(context).textTheme.headline6),
+                            width: 40,
+                            height: 40,
+                            spacing: 0,
+                            runSpacing: 0,
+                            borderRadius: 0,
+                            wheelDiameter: 165,
+                            enableOpacity: false,
+                            showColorCode: true,
+                            colorCodeHasColor: true,
+                            pickersEnabled: <ColorPickerType, bool>{
+                              ColorPickerType.wheel: true,
+                            },
+                            copyPasteBehavior:
+                                const ColorPickerCopyPasteBehavior(
+                              parseShortHexCode: true,
+                            ),
+                            actionButtons: const ColorPickerActionButtons(
+                              dialogActionButtons: true,
                             ),
                           ),
                           actions: <Widget>[
