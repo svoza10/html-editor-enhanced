@@ -6,13 +6,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart' as wv;
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
-import 'package:html_editor_enhanced/utils/plugins.dart';
-import 'package:html_editor_enhanced/utils/utils.dart';
-import 'package:html_editor_enhanced/html_editor.dart'
-    hide NavigationActionPolicy, UserScript, ContextMenu;
+import 'package:html_editor_enhanced/utils/callbacks.dart';
+import 'package:html_editor_enhanced/utils/options.dart';
 import 'package:html_editor_enhanced/utils/utils.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -153,9 +151,9 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
                     )
                   : Container(height: 0, width: 0),
               Expanded(
-                child: InAppWebView(
+                child: wv.InAppWebView(
                   initialFile: filePath,
-                  onWebViewCreated: (InAppWebViewController controller) {
+                  onWebViewCreated: (wv.InAppWebViewController controller) {
                     widget.controller.editorController = controller;
                     controller.addJavaScriptHandler(
                         handlerName: 'FormatSettings',
@@ -167,21 +165,21 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
                           }
                         });
                   },
-                  initialOptions: InAppWebViewGroupOptions(
-                      crossPlatform: InAppWebViewOptions(
+                  initialOptions: wv.InAppWebViewGroupOptions(
+                      crossPlatform: wv.InAppWebViewOptions(
                         javaScriptEnabled: true,
                         transparentBackground: true,
                         useShouldOverrideUrlLoading: true,
                       ),
-                      android: AndroidInAppWebViewOptions(
+                      android: wv.AndroidInAppWebViewOptions(
                         useHybridComposition: true,
                         loadWithOverviewMode: true,
                       )),
                   initialUserScripts:
                       widget.htmlEditorOptions.mobileInitialScripts
-                          as UnmodifiableListView<UserScript>?,
+                          as UnmodifiableListView<wv.UserScript>?,
                   contextMenu: widget.htmlEditorOptions.mobileContextMenu
-                      as ContextMenu?,
+                      as wv.ContextMenu?,
                   gestureRecognizers: {
                     Factory<VerticalDragGestureRecognizer>(
                         () => VerticalDragGestureRecognizer()),
@@ -194,10 +192,10 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
                     if (!action.request.url.toString().contains(filePath)) {
                       return (await widget.callbacks?.onNavigationRequestMobile
                                   ?.call(action.request.url.toString()))
-                              as NavigationActionPolicy? ??
-                          NavigationActionPolicy.ALLOW;
+                              as wv.NavigationActionPolicy? ??
+                          wv.NavigationActionPolicy.ALLOW;
                     }
-                    return NavigationActionPolicy.ALLOW;
+                    return wv.NavigationActionPolicy.ALLOW;
                   },
                   onConsoleMessage: (controller, message) {
                     print(message.message);
@@ -252,7 +250,7 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
                     }
                   },
                   onLoadStop:
-                      (InAppWebViewController controller, Uri? uri) async {
+                      (wv.InAppWebViewController controller, Uri? uri) async {
                     var url = uri.toString();
                     var maximumFileSize = 10485760;
                     if (url.contains(filePath)) {
@@ -530,7 +528,8 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
                                 keyCode.first as int;
                           });
                       //disable editor if necessary
-                      if (widget.htmlEditorOptions.disabled && !callbacksInitialized) {
+                      if (widget.htmlEditorOptions.disabled &&
+                          !callbacksInitialized) {
                         widget.controller.disable();
                       }
                       //initialize callbacks

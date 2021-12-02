@@ -55,21 +55,24 @@ class FontButtons extends Toolbar {
         color: Colors.black,
       ));
     }
-    if (italic)
+    if (italic) {
       icons.add(Icon(
         Icons.format_italic,
         color: Colors.black,
       ));
-    if (underline)
+    }
+    if (underline) {
       icons.add(Icon(
         Icons.format_underline,
         color: Colors.black,
       ));
-    if (clearAll)
+    }
+    if (clearAll) {
       icons.add(Icon(
         Icons.format_clear,
         color: Colors.black,
       ));
+    }
     return icons;
   }
 
@@ -114,16 +117,18 @@ class ListButtons extends Toolbar {
 
   List<Icon> getIcons() {
     var icons = <Icon>[];
-    if (ul)
+    if (ul) {
       icons.add(Icon(
         Icons.format_list_bulleted,
         color: Colors.black,
       ));
-    if (ol)
+    }
+    if (ol) {
       icons.add(Icon(
         Icons.format_list_numbered,
         color: Colors.black,
       ));
+    }
     return icons;
   }
 }
@@ -163,16 +168,18 @@ class ParagraphButtons extends Toolbar {
 
   List<Icon> getIcons2() {
     var icons = <Icon>[];
-    if (increaseIndent)
+    if (increaseIndent) {
       icons.add(Icon(
         Icons.format_indent_increase,
         color: Colors.black,
       ));
-    if (decreaseIndent)
+    }
+    if (decreaseIndent) {
       icons.add(Icon(
         Icons.format_indent_decrease,
         color: Colors.black,
       ));
+    }
     return icons;
   }
 }
@@ -234,16 +241,18 @@ class OtherButtons extends Toolbar {
     var icons = <Icon>[];
     if (fullscreen) icons.add(Icon(Icons.fullscreen));
     if (codeview) icons.add(Icon(Icons.code));
-    if (undo)
+    if (undo) {
       icons.add(Icon(
         Icons.undo,
         color: Colors.black,
       ));
-    if (redo)
+    }
+    if (redo) {
       icons.add(Icon(
         Icons.redo,
         color: Colors.black,
       ));
+    }
     if (help) icons.add(Icon(Icons.help_outline));
     return icons;
   }

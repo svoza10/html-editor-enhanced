@@ -6,8 +6,6 @@ import 'package:html_editor_enhanced/src/html_editor_controller_mobile.dart';
 import 'package:html_editor_enhanced/src/widgets/html_editor_widget_mobile.dart';
 import 'package:html_editor_enhanced/utils/callbacks.dart';
 import 'package:html_editor_enhanced/utils/plugins.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 
 /// HtmlEditor class for mobile
 class HtmlEditor extends StatelessWidget {
