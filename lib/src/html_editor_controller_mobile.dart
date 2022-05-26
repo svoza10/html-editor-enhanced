@@ -124,7 +124,6 @@ class HtmlEditorController extends unsupported.HtmlEditorController {
   @override
   void disable() {
     toolbar?.disable();
-    _evaluateJavascript(source: "\$('#summernote-2').summernote('disable');");
   }
 
   /// enables the Html editor
