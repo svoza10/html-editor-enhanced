@@ -61,6 +61,7 @@ class _HtmlEditorExampleState extends State<HtmlEditorExample> {
       onTap: () {
         if (!kIsWeb) {
           controller.clearFocus();
+          controller.disable();
         }
       },
       child: Scaffold(
