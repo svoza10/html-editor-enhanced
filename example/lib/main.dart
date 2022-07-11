@@ -164,6 +164,142 @@ class _HtmlEditorExampleState extends State<HtmlEditorExample> {
                   ),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    TextButton(
+                      style: TextButton.styleFrom(
+                          backgroundColor:
+                              Theme.of(context).colorScheme.secondary),
+                      onPressed: () async {
+                        controller.insertLink(
+                            'Google linked', 'https://google.com', true);
+                      },
+                      child: Text(
+                        'Insert Link',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 16,
+                    ),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                          backgroundColor:
+                              Theme.of(context).colorScheme.secondary),
+                      onPressed: () {
+                        controller.insertNetworkImage(
+                            'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png',
+                            filename: 'Google network image');
+                      },
+                      child: Text(
+                        'Insert network image',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 16),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    TextButton(
+                      style: TextButton.styleFrom(
+                          backgroundColor: Colors.blueGrey),
+                      onPressed: () {
+                        controller.addNotification(
+                            'Info notification', NotificationType.info);
+                      },
+                      child:
+                          Text('Info', style: TextStyle(color: Colors.white)),
+                    ),
+                    SizedBox(
+                      width: 16,
+                    ),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                          backgroundColor: Colors.blueGrey),
+                      onPressed: () {
+                        controller.addNotification(
+                            'Warning notification', NotificationType.warning);
+                      },
+                      child: Text('Warning',
+                          style: TextStyle(color: Colors.white)),
+                    ),
+                    SizedBox(
+                      width: 16,
+                    ),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                          backgroundColor:
+                              Theme.of(context).colorScheme.secondary),
+                      onPressed: () async {
+                        controller.addNotification(
+                            'Success notification', NotificationType.success);
+                      },
+                      child: Text(
+                        'Success',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 16,
+                    ),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                          backgroundColor:
+                              Theme.of(context).colorScheme.secondary),
+                      onPressed: () {
+                        controller.addNotification(
+                            'Danger notification', NotificationType.danger);
+                      },
+                      child: Text(
+                        'Danger',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 16),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    TextButton(
+                      style: TextButton.styleFrom(
+                          backgroundColor: Colors.blueGrey),
+                      onPressed: () {
+                        controller.addNotification('Plaintext notification',
+                            NotificationType.plaintext);
+                      },
+                      child: Text('Plaintext',
+                          style: TextStyle(color: Colors.white)),
+                    ),
+                    SizedBox(
+                      width: 16,
+                    ),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                          backgroundColor:
+                              Theme.of(context).colorScheme.secondary),
+                      onPressed: () async {
+                        controller.removeNotification();
+                      },
+                      child: Text(
+                        'Remove',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),

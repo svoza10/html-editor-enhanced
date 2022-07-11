@@ -172,7 +172,8 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
                         useShouldOverrideUrlLoading: true,
                       ),
                       android: wv.AndroidInAppWebViewOptions(
-                        useHybridComposition: widget.htmlEditorOptions.androidUseHybridComposition,
+                        useHybridComposition: widget
+                            .htmlEditorOptions.androidUseHybridComposition,
                         loadWithOverviewMode: true,
                       )),
                   initialUserScripts:
