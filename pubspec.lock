@@ -5,72 +5,72 @@ packages:
     dependency: transitive
     description:
       name: async
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.9.0"
+    version: "2.8.2"
   boolean_selector:
     dependency: transitive
     description:
       name: boolean_selector
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
   characters:
     dependency: transitive
     description:
       name: characters
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.1"
+    version: "1.2.0"
+  charcode:
+    dependency: transitive
+    description:
+      name: charcode
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.3.1"
   clock:
     dependency: transitive
     description:
       name: clock
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.1"
+    version: "1.1.0"
   collection:
     dependency: transitive
     description:
       name: collection
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
     version: "1.16.0"
   fake_async:
     dependency: transitive
     description:
       name: fake_async
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.3.1"
+    version: "1.3.0"
   ffi:
     dependency: transitive
     description:
       name: ffi
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
   file_picker:
     dependency: "direct main"
     description:
       name: file_picker
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.2.0"
+    version: "5.0.1"
   flex_color_picker:
     dependency: "direct main"
     description:
       name: flex_color_picker
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.6.1"
-  flex_seed_scheme:
-    dependency: transitive
-    description:
-      name: flex_seed_scheme
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
-    source: hosted
-    version: "1.0.1"
+    version: "2.5.0"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -79,38 +79,36 @@ packages:
   flutter_inappwebview:
     dependency: "direct main"
     description:
-      path: "."
-      ref: ios-16-compile-issue
-      resolved-ref: b3ec6012d2e92c133c8258bd8eedbb5ee8a9eaac
-      url: "git@github.com:VictorUvarov/flutter_inappwebview.git"
-    source: git
+      name: flutter_inappwebview
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "5.4.3+7"
   flutter_keyboard_visibility:
     dependency: "direct main"
     description:
       name: flutter_keyboard_visibility
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
     version: "5.3.0"
   flutter_keyboard_visibility_platform_interface:
     dependency: transitive
     description:
       name: flutter_keyboard_visibility_platform_interface
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
   flutter_keyboard_visibility_web:
     dependency: transitive
     description:
       name: flutter_keyboard_visibility_web
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
       name: flutter_plugin_android_lifecycle
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.7"
   flutter_test:
@@ -127,72 +125,72 @@ packages:
     dependency: transitive
     description:
       name: infinite_listview
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.0"
   js:
     dependency: transitive
     description:
       name: js
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.4"
   matcher:
     dependency: transitive
     description:
       name: matcher
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.12"
+    version: "0.12.11"
   material_color_utilities:
     dependency: transitive
     description:
       name: material_color_utilities
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.5"
+    version: "0.1.4"
   meta:
     dependency: "direct main"
     description:
       name: meta
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.0"
+    version: "1.7.0"
   numberpicker:
     dependency: "direct main"
     description:
       name: numberpicker
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
   path:
     dependency: transitive
     description:
       name: path
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.2"
+    version: "1.8.1"
   pedantic:
     dependency: "direct main"
     description:
       name: pedantic
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
     version: "1.11.1"
   plugin_platform_interface:
     dependency: transitive
     description:
       name: plugin_platform_interface
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.1.3"
+    version: "2.1.2"
   pointer_interceptor:
     dependency: "direct main"
     description:
       name: pointer_interceptor
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.3+3"
+    version: "0.9.3+2"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -202,65 +200,65 @@ packages:
     dependency: transitive
     description:
       name: source_span
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.9.0"
+    version: "1.8.2"
   stack_trace:
     dependency: transitive
     description:
       name: stack_trace
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
     version: "1.10.0"
   stream_channel:
     dependency: transitive
     description:
       name: stream_channel
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
   string_scanner:
     dependency: transitive
     description:
       name: string_scanner
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.1"
+    version: "1.1.0"
   term_glyph:
     dependency: transitive
     description:
       name: term_glyph
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.1"
+    version: "1.2.0"
   test_api:
     dependency: transitive
     description:
       name: test_api
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.12"
+    version: "0.4.9"
   vector_math:
     dependency: transitive
     description:
       name: vector_math
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
   visibility_detector:
     dependency: "direct main"
     description:
       name: visibility_detector
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.3"
   win32:
     dependency: transitive
     description:
       name: win32
-      url: "https://worldeecom.jfrog.io/artifactory/api/pub/worldee-all/"
+      url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.0"
+    version: "2.7.0"
 sdks:
-  dart: ">=2.18.0 <3.0.0"
-  flutter: ">=3.3.0"
+  dart: ">=2.17.0 <3.0.0"
+  flutter: ">=3.0.0"
