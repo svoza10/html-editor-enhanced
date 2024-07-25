@@ -9,6 +9,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart' as wv;
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
+import 'package:html_editor_enhanced/utils/callbacks.dart';
+import 'package:html_editor_enhanced/utils/options.dart';
 import 'package:html_editor_enhanced/utils/utils.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -471,7 +473,7 @@ class _HtmlEditorWidgetMobileState extends State<HtmlEditorWidget> {
                               "document.onselectionchange = onSelectionChange; console.log('done');");
                       await controller.evaluateJavascript(
                           source:
-                              "document.getElementsByClassName('note-editable')[0].setAttribute('inputmode', '${widget.htmlEditorOptions.inputType.name}');");
+                              "document.getElementsByClassName('note-editable')[0].setAttribute('inputmode', '${describeEnum(widget.htmlEditorOptions.inputType)}');");
                       if ((Theme.of(context).brightness == Brightness.dark ||
                               widget.htmlEditorOptions.darkMode == true) &&
                           widget.htmlEditorOptions.darkMode != false) {

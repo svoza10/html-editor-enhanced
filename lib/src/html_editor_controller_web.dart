@@ -288,7 +288,7 @@ class HtmlEditorController extends unsupported.HtmlEditorController {
       _evaluateJavascriptWeb(data: {
         'type': 'toIframe: addNotification',
         'html': html,
-        'alertType': 'alert alert-${notificationType.name}'
+        'alertType': 'alert alert-${describeEnum(notificationType)}'
       });
     }
     recalculateHeight();
