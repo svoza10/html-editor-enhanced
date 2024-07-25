@@ -5,7 +5,7 @@ version: 2.5.1
 homepage: https://github.com/tneotia/html-editor-enhanced
 
 environment:
-  sdk: '>=3.0.0 <4.0.0'
+  sdk: '>=3.3.2 <4.0.0'
 
 dependencies:
   flutter:
